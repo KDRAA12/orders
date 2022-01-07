@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "antd/dist/antd.css";
+import "./App.css";
+import Orders from "./orders";
+import { ThemeSwitcherProvider } from "react-css-theme-switcher";
+import { THEME_CONFIG } from "./AppConfig";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const themes = {
+  dark: `${process.env.PUBLIC_URL}/css/dark-theme.css`,
+  light: `${process.env.PUBLIC_URL}/css/light-theme.css`,
+};
+
+const App = () => (
+  <ThemeSwitcherProvider
+    themeMap={themes}
+    defaultTheme={THEME_CONFIG.currentTheme}
+    insertionPoint="styles-insertion-point"
+  >
+    <Orders />
+  </ThemeSwitcherProvider>
+);
 
 export default App;
